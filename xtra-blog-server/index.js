@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/test", () => {
+mongoose.connect("mongodb://localhost:27017/xtraBlog", () => {
     console.log('Database Connection is Successfully');
 });
 
