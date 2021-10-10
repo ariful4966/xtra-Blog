@@ -1,36 +1,45 @@
-const {Schema, model}= require('mongoose')
+const { Schema, model } = require("mongoose");
 
-const postSchema = new Schema({
+const postSchema = new Schema(
+  {
     title: {
-        type: String,
-        required: true,
-        maxlength: 200,
-        trim: true
+      type: String,
+      required: true,
+      maxlength: 200,
+      trim: true,
     },
-    description:{
-        type: String,
-        required:true,
-        trim: true
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    tags: {
+      type: [String],
+      required: true,
     },
     thumbnail: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
-  
-  comments: [{
+    readTime: String,
+
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    author: {
       type: Schema.Types.ObjectId,
-      ref: 'Comment'
-  }],
-  author: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
-      
+      ref: "User",
+      required: true,
+    },
   },
-  date: { type: Date, default: Date.now },
+  {
+    timestamps: true,
+  }
+);
 
-});
-
-const Post = model('Post', postSchema);
-module.exports = Post
+const Post = model("Post", postSchema);
+module.exports = Post;
