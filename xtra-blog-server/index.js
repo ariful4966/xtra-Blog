@@ -1,14 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const authRoute = require('./Router/authRoute')
+const setRoutes = require("./Router/routes");
 const port = 4000;
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use('/', authRoute)
+app.use(setRoutes);
+
 
 mongoose.connect("mongodb://localhost:27017/xtraBlog", () => {
   console.log("Database Connection is Successfully");
